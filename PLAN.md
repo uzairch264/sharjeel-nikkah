@@ -1,6 +1,13 @@
-# Muhammad Farhan — Digital Wedding Invitation
+# Nikaah of Captain Muhammad Sharjeel Altaf & Sameen Shahbaz: Digital Invitation
 
-React + Vite one-page invitation. Embroidered ivory-and-sage design, a linen-door opening, and the URL decides which events a guest sees.
+React + Vite one-page invitation for a single event, the Nikaah:
+
+- **Hosts:** Mr. and Mrs. Altaf Hussain Chaudhary
+- **Date:** Saturday 19 December 2026
+- **Time:** 2:00 PM to 4:00 PM
+- **Venue:** Badshahi Masjid, Lahore
+
+The design follows Badshahi Masjid: red sandstone, white marble inlay, onion domes, octagonal minarets and cusped Mughal arches. All the artwork is SVG code in `src/components/Mughal.jsx`. There are no image files.
 
 ## Run it
 
@@ -10,59 +17,46 @@ npm run dev      # http://localhost:5173
 npm run build    # outputs dist/ — upload to Netlify / Vercel / Cloudflare Pages / GitHub Pages
 ```
 
-## URL rules
+## Links
 
-Each event has a **code** (set in `src/config.js`): **Mehndi = `0317`**, **Barat = `812`**, **Walima = `1554`**. Event names in the URL do not work, only codes.
+Every guest sees the same invitation. Two optional additions to the link:
 
-| URL | Guest sees |
+| URL | Effect |
 |---|---|
-| `/` | Announcement only: *Muhammad Farhan weds Daughter of M. Akhtar Mughal* |
-| `/?0317` | Mehndi only |
-| `/?812` | Barat only |
-| `/?1554` | Walima only |
-| `/?0317&812` | Mehndi + Barat |
-| `/?0317&1554` | Mehndi + Walima |
-| `/?0317&812&1554` | All three |
+| `/` | The invitation |
+| `/?to=Khan%20Family` | Adds "For Khan Family" on the gate and "Dear Khan Family," on the first page |
+| `/?lang=ur` | Opens in Urdu |
+| `/?to=Khan%20Family&lang=ur` | Both |
 
-- Also accepted: `?events=0317,812` and `?e=0317-812`.
-- Events always appear in ceremony order, whatever order the codes are in.
-- Add `&to=Khan%20Family` to personalise the intro label and greeting, and `&lang=ur` to open in Urdu.
-- **Link maker for the family:** open `/#links`, tick events, type a name, copy the link, and send it on WhatsApp.
+**Link maker for the family:** open `/#links`, type a name, choose a language, copy the link and send it on WhatsApp.
 
 ## Page flow
 
-Design: embroidered ivory linen, sage ivy, pearl wisteria, white orchids and roses, drawn entirely in SVG code (`src/components/Embroidery.jsx`), no image files.
+1. **Gate.** The masjid gateway: a marble-inlaid sandstone iwan with Bismillah on the inscription band, a dome behind it and a hanging brass lamp. Carved wooden doors with brass studs fill the arch. Tap anywhere: the doors swing open, light and rose petals spill out, and the view walks through the arch. Music starts on that tap.
+2. **Hero.** Badshahi Masjid by day: the prayer hall, three marble domes, the great minarets, the courtyard arcades and the pool with a reflection. Pigeons lift off the domes. Above it are the names, the date and the venue.
+3. **Invitation.** A marble mihrab-shaped panel with Bismillah, Surah Ar-Rum 30:21 and the invitation text, word for word.
+4. **The Ceremony.** A sandstone arched card with the date, time and venue, a map link and an add-to-calendar button, followed by a countdown in four arched niches. The countdown hides once the Nikaah has started.
+5. **Dua.** The marriage dua in Arabic and English, signed by the hosts.
+6. **Finale.** The masjid lit up at night under a crescent moon, with the monogram, the names, the date and the venue.
 
-1. **Intro**: two linen door panels tied with a frayed chiffon bow. Tap anywhere: the bow lets go, the doors swing open and a few pearls burst. Music starts on that tap.
-2. **Hero**: stone arch over a lake and mountains, with the names inside ("We are getting married"), the date range and city, and a *Scroll down* button.
-3. **Verse and families**: two rose-wrapped columns around Bismillah and Surah Ar-Rum 30:21, then the hosts line and the two families.
-4. **The Celebrations**: one card per invited event with an embroidered garland, date, programme times, venue, a map link and an add-to-calendar button.
-5. **Countdown** to the first upcoming invited event.
-6. **Closing**: dua, "Looking forward" and the R.S.V.P list.
-7. **Finale**: monogram, names, date range and city, and the urns of white roses.
+Top-right on every screen: **English / اردو** switch and a **music mute/unmute** button.
 
-Top-right on every screen: **English / اردو** switch (also `?lang=ur` in the link) and a **music mute/unmute** button. Music is a soft generated piece started by the intro tap; to use your own track, set `music` in `src/config.js`.
-
-Layout adapts to phone, tablet and desktop. The intro and hero are phone-shaped scenes that scale with the screen height; on wide screens the flora continues into the empty sides, on short landscape phones the hero scrolls instead of shrinking. Events sit side by side on wide screens. Checked from 320 px wide up to 1920 px with no sideways scrolling.
-
-Announcement mode (no events in the URL) shows only the hero, closing and finale: no verse, events, countdown or RSVP list.
+The layout adapts to phone, tablet and desktop. It was checked at 320, 390, 768, 844 (landscape) and 1440 px wide, with no sideways scrolling. On wide screens the sandstone wall, the arcades and the outer minarets continue to the sides.
 
 ## Where things are
 
-- `src/config.js`: **all content** (names, dates, programme times, venues, RSVP contacts, music). Edit this only.
-- `src/lib/invite.js`: URL parsing, date formatting, calendar and map links.
-- `src/components/`: `GiftIntro` (doors and bow), `Hero`, `Verse`, `Celebrations`, `Countdown`, `Closing`, `Finale`, `Urn`, `Embroidery` (all the artwork), `MusicButton`, `LinkMaker`.
-- `src/styles.css`: the whole look.
-- `public/assets/music.mp3`: add your own file. The music button hides itself if it's missing.
+- `src/config.js`: **all content** (names, hosts line, date and time, venue, map link, music, Urdu text). Edit this file only.
+- `src/components/Mughal.jsx`: all artwork (gateway, doors, masjid scene, arched card, ornaments).
+- `src/lib/arch.js`: geometry for the cusped arches, onion domes and parapet merlons.
+- `src/components/`: `Gate`, `Hero`, `Invitation`, `Ceremony`, `Countdown`, `Closing`, `Finale`, `TopBar`, `MusicButton`, `LinkMaker`.
+- `src/styles.css`: the whole look. The colours are at the top (`--sand`, `--marble`, `--gold`, and so on).
+- `src/lib/invite.js`: link parsing, date formatting, the calendar and map links.
 
 ## Libraries
 
-React 18, Vite 6, GSAP 3.13 + ScrollTrigger + @gsap/react (animation), Lenis (smooth scroll), canvas-confetti (the pearl burst when the doors open). Fonts: Pinyon Script, Cormorant Garamond, Jost, Amiri, Noto Nastaliq Urdu.
+React 18, Vite 6, GSAP 3.13 + ScrollTrigger + @gsap/react (animation), Lenis (smooth scroll), canvas-confetti (the petals when the gate opens). Fonts: Cinzel, Pinyon Script, Cormorant Garamond, Amiri, Noto Nastaliq Urdu.
 
-## Content still needed
+## Still open
 
-- **Map links** for Chak No. 54/4-R (Mehndi and Barat) and Al-Faisal Marquee (optional). They currently search by venue name and address.
-- **RSVP phone numbers.** The card lists only names; add `phone` to entries in `rsvpContacts` to make them tap-to-call. Zeeshan Ahmed (0304-8481466) is done; the other RSVP names and the Walima venue number 0302-4364966 have no number yet.
-- **Music file** (optional): put it in `public/assets/` and set `music` in `src/config.js`. By default (`music: ""`) the built-in soft generated music plays.
-- **Urdu text.** Translations are in the `ur` block of `config.js` and `src/lib/i18n.jsx`; worth a read-through by a native speaker.
-- **Event end times** are estimates (used only for the add-to-calendar button).
+- **Urdu text.** The translations are in the `ur` block of `config.js` and in `src/lib/i18n.jsx`. A native speaker should read them through.
+- **Music file** (optional): put a file in `public/assets/` and set `music` in `src/config.js`. By default the built-in generated qawwali-style music plays: harmonium, tabla (keherwa) and handclaps.

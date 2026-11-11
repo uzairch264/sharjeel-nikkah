@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
 import { useLang } from "../lib/i18n";
 import { gsap, useGSAP, reducedMotion } from "../lib/gsap";
+import { FloralSpray } from "./Mughal";
 
-const intl = (p) => `92${p.replace(/\D/g, "").replace(/^0/, "")}`;
-
-export default function Closing({ announce }) {
+export default function Closing() {
   const root = useRef(null);
   const { W, t, lang } = useLang();
 
@@ -17,29 +16,12 @@ export default function Closing({ announce }) {
   }, { scope: root, dependencies: [lang] });
 
   return (
-    <section className="page closing" ref={root}>
+    <section className="page sand closing" ref={root}>
+      <svg className="closing-spray" viewBox="0 0 40 120" aria-hidden="true"><FloralSpray className="r-marble" /></svg>
       <p className="dua" lang="ar">بَارَكَ ٱللَّٰهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
       <p className="dua-en">{t("dua")}</p>
-      <p className="signoff">{announce ? t("withLove") : W.signOff}</p>
-      {!announce && (
-        <>
-          <div className="looking">
-            <p className="kicker">{t("lookingForward")}</p>
-            <p>{W.lookingForward}</p>
-          </div>
-          {W.rsvpContacts?.length > 0 && (
-            <div className="contacts">
-              <p className="kicker">{t("contact")}</p>
-              {W.elders && <p className="elders">{W.elders}</p>}
-              {W.rsvpContacts.map((c) => (c.phone ? (
-                <a key={c.name} href={`tel:+${intl(c.phone)}`}><b>{c.name}</b><span dir="ltr">{c.phone}</span></a>
-              ) : (
-                <div key={c.name} className="contact-plain"><b>{c.name}</b></div>
-              )))}
-            </div>
-          )}
-        </>
-      )}
+      <p className="signoff">{W.signOff}</p>
+      <p className="signoff-by">{W.signOffBy}</p>
     </section>
   );
 }

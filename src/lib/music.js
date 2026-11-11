@@ -12,8 +12,8 @@ let file = null;
 /**
  * Call this synchronously from the tap handler. Browsers (iOS Safari especially) only allow audio
  * that is started inside the tap itself, so nothing here waits on the network first.
- * The generated soft music starts immediately; if `music` in config.js points at a real file
- * that plays successfully, it takes over from the generated piece.
+ * The generated qawwali-style music starts immediately; if `music` in config.js points at a real file
+ * that plays successfully, it takes over from the generated music.
  */
 export function startMusic() {
   if (started) return;
