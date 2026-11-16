@@ -8,7 +8,7 @@ const WEDDING = {
   hostsLine: "Request the pleasure of your company at the Nikaah Ceremony of their beloved son",
 
   // The couple. `prefix` is a small line above the name.
-  groom: { prefix: "Captain", name: "Muhammad Sharjeel Altaf" },
+  groom: { prefix: "", name: "Captain Muhammad Sharjeel Altaf" },
   connector: "with",
   bride: { name: "Sameen Shahbaz" },
 
@@ -20,7 +20,7 @@ const WEDDING = {
 
   // Background music. Leave "" to use the built-in soft generated music (no file needed).
   // To use your own track: put it in public/assets/ and set e.g. "assets/music.mp3".
-  music: "",
+  music: "public/assets/music.mp3",
 
   // Pakistan Standard Time (+05:00). `start`/`end` drive the countdown and the calendar button.
   event: {
