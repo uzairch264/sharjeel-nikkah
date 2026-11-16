@@ -20,7 +20,7 @@ const WEDDING = {
 
   // Background music. Leave "" to use the built-in soft generated music (no file needed).
   // To use your own track: put it in public/assets/ and set e.g. "assets/music.mp3".
-  music: "public/assets/music.mp3",
+  music: "assets/music.mp3",
 
   // Pakistan Standard Time (+05:00). `start`/`end` drive the countdown and the calendar button.
   event: {
