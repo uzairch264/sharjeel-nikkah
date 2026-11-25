@@ -8,7 +8,7 @@ import Countdown from "./Countdown";
 /** The Nikaah and dinner details, followed by the countdown to the Nikaah. */
 export default function Ceremony() {
   const root = useRef(null);
-  const { W, t, lang, locale } = useLang();
+  const { W, t, locale } = useLang();
   const ev = W.event;
   const dinner = ev.dinner;
   const d = describeEvent(ev, locale);
@@ -20,7 +20,7 @@ export default function Ceremony() {
     const st = { trigger: root.current, start: "top 75%", once: true };
     gsap.from(".arch-card", { autoAlpha: 0, y: 50, duration: 1.4, ease: "power3.out", scrollTrigger: st });
     gsap.from(".arch-body > *", { autoAlpha: 0, y: 16, duration: 0.9, stagger: 0.1, delay: 0.4, ease: "power2.out", scrollTrigger: st });
-  }, { scope: root, dependencies: [lang] });
+  }, { scope: root });
 
   return (
     <section className="page marble ceremony" id="ceremony" ref={root}>

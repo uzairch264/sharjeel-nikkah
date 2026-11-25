@@ -7,7 +7,7 @@ import { MasjidScene, Divider } from "./Mughal";
 
 export default function Hero({ opened, guest }) {
   const root = useRef(null);
-  const { W, t, lang, locale } = useLang();
+  const { W, t, locale } = useLang();
   const d = describeEvent(W.event, locale);
 
   useGSAP(() => {
@@ -38,7 +38,7 @@ export default function Hero({ opened, guest }) {
           repeat: -1, repeatDelay: 7 + (i % 5) * 2,
         });
     });
-  }, { scope: root, dependencies: [opened, lang] });
+  }, { scope: root, dependencies: [opened] });
 
   return (
     <section className="hero" id="hero" ref={root}>
@@ -59,7 +59,7 @@ export default function Hero({ opened, guest }) {
       <div className="scene-wrap">
         <MasjidScene p="hero" birds className="scene" />
       </div>
-      <a className="scroll-pill" href="#invitation" onClick={(e) => { e.preventDefault(); document.getElementById("invitation")?.scrollIntoView({ behavior: "smooth" }); }}>
+      <a className="scroll-pill" href="#ceremony" onClick={(e) => { e.preventDefault(); document.getElementById("ceremony")?.scrollIntoView({ behavior: "smooth" }); }}>
         {t("scrollDown")} <span aria-hidden="true">↓</span>
       </a>
     </section>

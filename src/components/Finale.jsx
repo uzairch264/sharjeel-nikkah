@@ -7,7 +7,7 @@ import { MasjidScene } from "./Mughal";
 /** Last page: the masjid lit up at night under a crescent moon, with the monogram and names. */
 export default function Finale() {
   const root = useRef(null);
-  const { W, t, locale, lang } = useLang();
+  const { W, t, locale } = useLang();
   const d = describeEvent(W.event, locale);
   const [i1, i2] = W.initials;
 
@@ -17,7 +17,7 @@ export default function Finale() {
     gsap.from(".finale-inner > *", { autoAlpha: 0, y: 22, duration: 1.1, stagger: 0.18, ease: "power3.out", scrollTrigger: st });
     gsap.from(".finale .scene", { autoAlpha: 0, y: 60, duration: 1.8, ease: "power3.out", scrollTrigger: st });
     gsap.to(".finale .door-glow, .finale .rc", { opacity: 0.82, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: -1, stagger: { each: 0.02, from: "random" } });
-  }, { scope: root, dependencies: [lang] });
+  }, { scope: root });
 
   return (
     <section className="finale" ref={root}>

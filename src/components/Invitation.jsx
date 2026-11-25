@@ -6,7 +6,7 @@ import { ArchCard, Divider, Rosette } from "./Mughal";
 /** Bismillah, Ar-Rum 30:21 and the formal invitation, on a marble mihrab panel. */
 export default function Invitation() {
   const root = useRef(null);
-  const { W, t, lang } = useLang();
+  const { W, t } = useLang();
 
   useGSAP(() => {
     if (reducedMotion()) return;
@@ -15,7 +15,7 @@ export default function Invitation() {
     gsap.from(".arch-body > *", {
       autoAlpha: 0, y: 18, duration: 1, stagger: 0.12, delay: 0.4, ease: "power3.out", scrollTrigger: st,
     });
-  }, { scope: root, dependencies: [lang] });
+  }, { scope: root });
 
   return (
     <section className="page sand invitation" id="invitation" ref={root}>

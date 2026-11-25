@@ -5,7 +5,7 @@ import { FloralSpray } from "./Mughal";
 
 export default function Closing() {
   const root = useRef(null);
-  const { W, t, lang } = useLang();
+  const { W, t } = useLang();
 
   useGSAP(() => {
     if (reducedMotion()) return;
@@ -13,7 +13,7 @@ export default function Closing() {
       autoAlpha: 0, y: 20, duration: 1, stagger: 0.18, ease: "power3.out",
       scrollTrigger: { trigger: root.current, start: "top 78%", once: true },
     });
-  }, { scope: root, dependencies: [lang] });
+  }, { scope: root });
 
   return (
     <section className="page sand closing" ref={root}>

@@ -12,11 +12,33 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Nastaliq+Urdu:wght@400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Nastaliq+Urdu:wght@400;500&family=Pinyon+Script&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Nastaliq+Urdu:wght@400;500&family=Pinyon+Script&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Nastaliq+Urdu:wght@400;500&family=Pinyon+Script&display=swap"></noscript>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div id="startup-fallback" role="status" aria-live="polite">
+      <strong>The Nikaah</strong>
+      <span>Loading your invitation…</span>
+    </div>
+  </div>
   <noscript><p style="padding:2rem;text-align:center;color:#f8f3e9;background:#9c3b24">Please enable JavaScript to open your invitation.</p></noscript>
   <script type="module" src="/src/main.jsx"></script>
+  <style>
+    #startup-fallback {
+      min-height: 100svh;
+      display: grid;
+      place-content: center;
+      gap: .5rem;
+      padding: 2rem;
+      text-align: center;
+      color: #f8f3e9;
+      background: #9c3b24;
+      font-family: Georgia, serif;
+    }
+    #startup-fallback strong { font-size: 2rem; font-weight: 400; }
+    #startup-fallback span { font-size: 1rem; opacity: .85; }
+  </style>
 </body>
 </html>
