@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { setMusicMuted } from "../lib/music";
 import { useLang } from "../lib/i18n";
 
-/** Mute / unmute control. The music itself is started by the gift-box tap (see lib/music.js). */
+/** Mute / unmute control. Audio starts only when the user enables it. */
 export default function MusicButton({ start }) {
   const { t } = useLang();
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   if (!start) return null;
 

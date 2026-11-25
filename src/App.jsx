@@ -55,8 +55,8 @@ function Page() {
       <Gate guest={guest} onOpen={() => { startMusic(); setOpened(true); }} onDone={onDone} />
       <main id="invite">
         <Hero opened={opened} guest={guest} />
-        <Invitation />
         <Ceremony />
+        <Invitation />
         <Closing />
         <Finale />
       </main>

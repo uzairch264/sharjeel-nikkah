@@ -5,18 +5,18 @@ import { createAmbient } from "./ambient";
 const FILE_LEVEL = 0.45;
 
 let started = false;
-let muted = false;
+let muted = true;
 let ambient = null;
 let file = null;
 
 /**
  * Call this synchronously from the tap handler. Browsers (iOS Safari especially) only allow audio
  * that is started inside the tap itself, so nothing here waits on the network first.
- * The generated qawwali-style music starts immediately; if `music` in config.js points at a real file
- * that plays successfully, it takes over from the generated music.
+ * Music is initialized only after the user explicitly enables it. If `music` in config.js points at
+ * a real file that plays successfully, it takes over from the generated music when enabled.
  */
 export function startMusic() {
-  if (started) return;
+  if (started || muted) return;
   started = true;
 
   ambient = createAmbient();
@@ -36,6 +36,10 @@ export function startMusic() {
 
 export function setMusicMuted(m) {
   muted = m;
+  if (!started && !m) {
+    startMusic();
+    return;
+  }
   if (file) {
     if (!m) file.play().catch(() => {});
     gsap.to(file, { volume: m ? 0 : FILE_LEVEL, duration: 0.5, onComplete: () => { if (m) file.pause(); } });

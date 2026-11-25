@@ -5,13 +5,15 @@ import { gsap, useGSAP, reducedMotion } from "../lib/gsap";
 import { ArchCard, DomeIcon, Divider } from "./Mughal";
 import Countdown from "./Countdown";
 
-/** The Nikaah itself: date, time, venue, map and calendar, then the countdown. */
+/** The Nikaah and dinner details, followed by the countdown to the Nikaah. */
 export default function Ceremony() {
   const root = useRef(null);
   const { W, t, lang, locale } = useLang();
   const ev = W.event;
+  const dinner = ev.dinner;
   const d = describeEvent(ev, locale);
   const cal = calendarHref(ev, `${W.groom.name} & ${W.bride.name}`);
+  const dinnerCal = calendarHref(dinner, `${W.groom.name} & ${W.bride.name}`);
 
   useGSAP(() => {
     if (reducedMotion()) return;
@@ -37,7 +39,7 @@ export default function Ceremony() {
           <p className="detail-main">{ev.time}</p>
         </div>
         <div className="detail">
-          <p className="kicker">{t("venue")}</p>
+          <p className="kicker">{t("nikaahVenue")}</p>
           <p className="detail-main">{ev.venue}</p>
           {ev.address && <p className="detail-sub">{ev.address}</p>}
         </div>
@@ -45,6 +47,24 @@ export default function Ceremony() {
           <a className="btn" href={mapUrl(ev)} target="_blank" rel="noopener noreferrer">{t("viewMap")}</a>
           <a className="btn" href={cal.href} download={cal.download} target={cal.download ? undefined : "_blank"} rel="noopener noreferrer">{t("addCal")}</a>
         </div>
+        {dinner && (
+          <>
+            <Divider />
+            <div className="detail">
+              <p className="kicker">{t("dinnerVenue")}</p>
+              <p className="detail-main">{dinner.venue}</p>
+              {dinner.address && <p className="detail-sub">{dinner.address}</p>}
+            </div>
+            <div className="detail">
+              <p className="kicker">{t("time")}</p>
+              <p className="detail-main">{dinner.time}</p>
+            </div>
+            <div className="links">
+              <a className="btn" href={mapUrl(dinner)} target="_blank" rel="noopener noreferrer">{t("viewMap")}</a>
+              <a className="btn" href={dinnerCal.href} download={dinnerCal.download} target={dinnerCal.download ? undefined : "_blank"} rel="noopener noreferrer">{t("addCal")}</a>
+            </div>
+          </>
+        )}
       </ArchCard>
       <Countdown />
     </section>

@@ -1,6 +1,6 @@
 /* =========================================================
    EDIT EVERYTHING HERE. No need to touch any other file.
-   One event: the Nikaah at Badshahi Masjid, Lahore.
+   The Nikaah and dinner event details.
    ========================================================= */
 const WEDDING = {
   // Hosts line, word for word from the invitation
@@ -31,6 +31,15 @@ const WEDDING = {
     venue: "Badshahi Masjid",
     address: "Lahore",
     map: "https://www.google.com/maps/search/?api=1&query=Badshahi+Mosque%2C+Lahore",
+    dinner: {
+      title: "Dinner",
+      start: "2026-12-19T17:00:00+05:00",
+      end: "2026-12-19T19:00:00+05:00",
+      time: "5:00 PM - 7:00 PM",
+      venue: "Villa - The Grand Buffet",
+      address: "Lake City Lahore",
+      map: "https://www.google.com/maps/search/?api=1&query=Villa+The+Grand+Buffet%2C+Lake+City+Lahore",
+    },
   },
 
   // Urdu version of the text above. Same shape; anything missing falls back to English.
@@ -47,6 +56,12 @@ const WEDDING = {
       time: "دوپہر 2 بجے تا 4 بجے",
       venue: "بادشاہی مسجد",
       address: "لاہور",
+      dinner: {
+        title: "دعوتِ عشائیہ",
+        time: "شام 5 بجے تا 7 بجے",
+        venue: "ولا — دی گرینڈ بفیے",
+        address: "لیک سٹی لاہور",
+      },
     },
   },
 };
